@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.2"
+
+    defaultConfig {
+        applicationId "com.example.c.simpleplayer"
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode 1
+        versionName "1.0"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:23.1.1'
+    compile 'com.android.support:design:23.1.1'
+    compile files('libs/google-api-client-1.21.0.jar')
+    compile files('libs/google-api-client-android-1.21.0.jar')
+    compile files('libs/google-api-client-jackson2-1.21.0.jar')
+    compile files('libs/google-api-services-youtube-v3-rev154-1.21.0.jar')
+    compile files('libs/google-http-client-1.21.0.jar')
+    compile files('libs/google-http-client-android-1.21.0.jar')
+    compile files('libs/google-oauth-client-1.21.0.jar')
+    compile files('libs/jackson-core-2.1.3.jar')
+    compile files('libs/jsr305-1.3.9.jar')
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
+    compile 'com.squareup.picasso:picasso:2.3.2'
+    compile files('libs/google-http-client-jackson2-1.21.0.jar')
+
+}

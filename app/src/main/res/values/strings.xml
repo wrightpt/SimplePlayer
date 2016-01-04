@@ -1,0 +1,11 @@
+<resources>
+
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Yourtube</string>
+    <string name="search">Search</string>
+    <string name="failed">Failed to initialize Youtube Player</string>
+    <string name="DEVELOPER_KEY">AIzaSyBtR6Rc_m_9AUXHa9UY9UURbPAuUxlVfZc </string>
+    <string name="Next">Next</string>
+    <string name="next">next</string>
+    <string name="optionsmenu">Options Menu</string>
+</resources>

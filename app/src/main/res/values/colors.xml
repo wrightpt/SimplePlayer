@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#26C6DA</color>
+    <color name="colorPrimaryDark">#00ACC1</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="app_primary">#A94246</color>
+    <color name="app_primary_dark">#872328</color>
+    <color name="app_primary_accent">#F9B0B4</color>
+
+    <color name="transparent_black">#E6000000</color>
+
+    <color name="black">#000000</color>
+    <color name="pressed">#CC97e08f</color>
+    <color name="sa_green">#14a804</color>
+    <color name="stacked_green">#118504</color>
+    <color name="accent_green">#97e08f</color>
+    <color name="pressed1">#CC97e08f</color>
+    <color name="hint">#99FFFFFF</color>
+
+</resources>
