@@ -8,4 +8,6 @@
     <string name="Next">Next</string>
     <string name="next">next</string>
     <string name="optionsmenu">Options Menu</string>
+    <string name="search_title">find video</string>
+    <string name="search_hint">find video</string>
 </resources>

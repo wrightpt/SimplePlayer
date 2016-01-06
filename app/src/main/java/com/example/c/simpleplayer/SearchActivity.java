@@ -1,14 +1,19 @@
 package com.example.c.simpleplayer;
 
+import android.app.*;
 import android.content.*;
 import android.os.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
+import android.support.v7.widget.SearchView;
 import android.util.*;
 import android.view.*;
 import android.view.inputmethod.*;
 import android.widget.*;
 import android.widget.Toolbar;
+import android.app.SearchManager;
+
+import android.widget.SearchView.OnQueryTextListener;
 
 import com.squareup.picasso.*;
 
@@ -36,15 +41,16 @@ public class SearchActivity extends AppCompatActivity {
         //Toolbar myToolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(Toolbar);
 
-        searchInput = (EditText)findViewById(R.id.search_input);
+
+        //searchInput = (EditText)findViewById(R.id.);
         videosFound = (ListView)findViewById(R.id.videos_found);
 
         handler = new Handler();
 
-        searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+       /* searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
-                Log.d("test","clickedfffffff");
+
                 if(actionId == EditorInfo.IME_ACTION_DONE){
                     searchOnYoutube(v.getText().toString());
                     return false;
@@ -54,7 +60,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
         });
-
+        */
         addClickListener();
 
 
@@ -128,29 +134,100 @@ public class SearchActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_main, menu);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
+       SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+     final SearchView searchView =   (SearchView) menu.findItem(R.id.search).getActionView();
+        Log.d("hello", "hello");
+        searchView.setQueryHint("Search: ");
+      searchView.setSearchableInfo( searchManager.getSearchableInfo(getComponentName()));
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+        return true;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //
+        // .setIconifiedByDefault(true);
+
+   //  searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+   //         @Override
+    //        public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+   //             return false;
+    //       }
+
+
+
+
+
+          //      searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+          //  @Override
+         //   public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+
+           //     if(actionId == EditorInfo.IME_ACTION_DONE){
+           //         searchOnYoutube(v.getText().toString());
+           //         return false;
+           //     }
+           //     return true;
+          //  }
+
+
+
+        //getMenuInflater().inflate(R.menu.menu_main, menu);
+        //return true;
+
+       // return true;}
+
+ //  @Override
+ //  public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+   //    int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+     //  if (id == R.id.action_settings) {
 
-        return super.onOptionsItemSelected(item);
-    }
+    //   }
 
-
+//       return super.onOptionsItemSelected(item);
+ //  }
 
 
-}
+
+
+}}
+
+
 
 
 

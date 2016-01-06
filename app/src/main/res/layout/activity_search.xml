@@ -13,6 +13,16 @@
 
     </include>
 
+
+    <!--
+    <include
+        android:id="@+id/app_bar_search"
+        layout = "@layout/searchable">
+
+</include>
+
+
+
     <EditText
 
         android:layout_width="match_parent"
@@ -22,10 +32,15 @@
         android:singleLine="true"
         />
 
+-->
 
 
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/searchView"/>
 
-        <ListView
+    <ListView
         android:id="@+id/videos_found"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
