@@ -38,7 +38,7 @@ public class SearchActivity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar Toolbar =
                 (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
-        //Toolbar myToolbar = (Toolbar) findViewById(R.id.app_bar);
+        ;
         setSupportActionBar(Toolbar);
 
 
@@ -67,8 +67,8 @@ public class SearchActivity extends AppCompatActivity {
 
     }
 
-    private void setSupportActionBar(Toolbar myToolbar) {
-    }
+    //private void setSupportActionBar(Toolbar myToolbar) {
+    //}
 
     private List<VideoItem> searchResults;
 
@@ -137,17 +137,39 @@ public class SearchActivity extends AppCompatActivity {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_main, menu);
 
-       SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-     final SearchView searchView =   (SearchView) menu.findItem(R.id.search).getActionView();
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        final SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
         Log.d("hello", "hello");
         searchView.setQueryHint("Search: ");
-      searchView.setSearchableInfo( searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d("click", "click");
+                
 
 
+            }
+
+
+        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.d("click", "click2");
+
+                searchOnYoutube(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.d("click", "click1");
+                searchOnYoutube(newText);
+                return true;
             }
         });
 
@@ -158,8 +180,8 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-
         return true;
+    }
 
 
 
@@ -207,25 +229,25 @@ public class SearchActivity extends AppCompatActivity {
 
        // return true;}
 
- //  @Override
- //  public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-   //    int id = item.getItemId();
+  @Override
+   public boolean onOptionsItemSelected(MenuItem item) {
+       //  Handle action bar item clicks here. The action bar will
+       //  automatically handle clicks on the Home/Up button, so long
+       //  as you specify a parent activity in AndroidManifest.xml.
+       int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-     //  if (id == R.id.action_settings) {
+     if (id == R.id.action_settings) {
 
-    //   }
+      }
 
-//       return super.onOptionsItemSelected(item);
- //  }
-
-
+      return super.onOptionsItemSelected(item);
+  }
 
 
-}}
+
+
+}
 
 
 

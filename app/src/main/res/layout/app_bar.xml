@@ -18,7 +18,20 @@
         android:layout_marginRight="20dp"
         android:iconifiedByDefault="true" />
 
+    <!--
 
+    <item android:id="@+id/search"
+          android:title="Search Video"
+
+          android:orderInCategory="@android:integer/config_shortAnimTime"
+
+          app:showAsAction=""
+
+          app:actionViewClass="android.support.v7.widget.SearchView" />
+
+    <
+
+-->
 
 
 

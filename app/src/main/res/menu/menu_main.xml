@@ -36,7 +36,7 @@
 
           android:orderInCategory="@android:integer/config_shortAnimTime"
 
-          app:showAsAction="never"
+          app:showAsAction="always"
 
           app:actionViewClass="android.support.v7.widget.SearchView" />
 
