@@ -3,6 +3,7 @@ package com.example.c.simpleplayer;
 import android.app.*;
 import android.content.*;
 import android.os.*;
+import android.support.annotation.*;
 import android.support.v7.app.*;
 import android.support.v7.widget.*;
 import android.support.v7.widget.SearchView;
@@ -15,6 +16,18 @@ import android.app.SearchManager;
 
 import android.widget.SearchView.OnQueryTextListener;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.GoogleApiClient.*;
+import com.google.android.gms.common.api.OptionalPendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+
 import com.squareup.picasso.*;
 
 import java.util.*;
@@ -22,11 +35,17 @@ import java.util.*;
 /**
  * Created by c on 1/2/16.
  */
-public class SearchActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity implements OnConnectionFailedListener, GoogleApiClient.ConnectionCallbacks {
 
+    private static final int RC_SIGN_IN = 9001;
     private EditText searchInput;
     private ListView videosFound;
     private android.support.v7.widget.Toolbar Toolbar;
+    private Button Sign_in;
+    private GoogleApiClient mGoogleApiClient;
+
+
+
 
     private Handler handler;
 
@@ -38,14 +57,48 @@ public class SearchActivity extends AppCompatActivity {
 
         android.support.v7.widget.Toolbar Toolbar =
                 (android.support.v7.widget.Toolbar) findViewById(R.id.app_bar);
-        ;
         setSupportActionBar(Toolbar);
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+        mGoogleApiClient  = new GoogleApiClient.Builder(this)
+                //.enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .addOnConnectionFailedListener(this)
+            //    .addConnectionCallbacks((GoogleApiClient.ConnectionCallbacks) )
+                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
+                .build();
 
 
         //searchInput = (EditText)findViewById(R.id.);
         videosFound = (ListView)findViewById(R.id.videos_found);
 
         handler = new Handler();
+
+
+    //    Button Sign_in = (Button)findViewById(R.id.sign_in_button);
+     //   Sign_in.setEnabled(true);
+    //    Sign_in.setOnClickListener(new View.OnClickListener() {
+   //         @Override
+   //         public void onClick(View v) {
+
+    //            switch (v.getId()) {
+   //                 case R.id.sign_in:
+  //                      signIn();
+  //                      break;
+
+
+
+
+
+
+
+         //   }
+
+
+       // }
+
+
 
        /* searchInput.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -61,10 +114,33 @@ public class SearchActivity extends AppCompatActivity {
 
         });
         */
-        addClickListener();
 
 
 
+
+ //   });
+
+                addClickListener();
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.d("onstart", "onstart");
+        mGoogleApiClient.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mGoogleApiClient.disconnect();
+    }
+
+    private void signIn() {
+        Log.d("sign in", "sign in");
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient );
+        startActivityForResult(signInIntent, RC_SIGN_IN);
     }
 
     //private void setSupportActionBar(Toolbar myToolbar) {
@@ -132,6 +208,31 @@ public class SearchActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            //handleSignInResult(result);
+        }
+    }
+
+    //private void handleSignInResult(GoogleSignInResult result) {
+    //    Log.d(TAG, "handleSignInResult:" + result.isSuccess());
+    //    if (result.isSuccess()) {
+            // Signed in successfully, show authenticated UI.
+   //         GoogleSignInAccount acct = result.getSignInAccount();
+   //         mStatusTextView.setText(getString(R.string.signed_in_fmt, acct.getDisplayName()));
+   //         updateUI(true);
+   //     } else {
+            // Signed out, show unauthenticated UI.
+  //          updateUI(false);
+  //      }
+  //  }
+
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         MenuInflater inflater = getMenuInflater();
@@ -143,17 +244,17 @@ public class SearchActivity extends AppCompatActivity {
         searchView.setQueryHint("Search: ");
         searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-        searchView.setOnSearchClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d("click", "click");
-                
+     searchView.setOnSearchClickListener(new View.OnClickListener() {
+          @Override
+         public void onClick(View v) {
+            Log.d("click", "click");
 
 
-            }
+
+           }
 
 
-        });
+      });
 
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -237,16 +338,47 @@ public class SearchActivity extends AppCompatActivity {
        int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-     if (id == R.id.action_settings) {
 
+      switch (item.getItemId()) {
+
+          case R.id.action_settings :
+              return true;
+
+          case R.id.sign_in_button :
+              Log.d("sign_in_button","sign in button");
+              signIn();
+              return true;
+
+          case R.id.sign_in:
+              Log.d("sign_in_button1","sign in button1");
+              signIn();
+              return true;
+
+
+          // if (id == R.id.action_settings) {
+
+          // }
+
+          default:
+          return super.onOptionsItemSelected(item);
       }
-
-      return super.onOptionsItemSelected(item);
   }
 
 
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
 
+    @Override
+    public void onConnected(@Nullable Bundle bundle) {
+
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
 }
 
 

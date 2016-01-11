@@ -10,11 +10,22 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never"
-
-
-
         />
 
+
+   <com.google.android.gms.common.SignInButton
+    android:id="@+id/sign_in_button"
+    android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+    />
+
+    <item
+        android:id="@+id/sign_in"
+        android:orderInCategory="200"
+        android:title="@string/sign_in"
+        app:showAsAction="always"
+        />
+<!--
     <item
         android:id="@+id/navigate"
         android:title="@string/next"

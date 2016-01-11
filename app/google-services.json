@@ -1,0 +1,51 @@
+{
+  "project_info": {
+    "project_id": "simpleplayer-93b30",
+    "project_number": "901463423162",
+    "name": "simpleplayer"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:901463423162:android:fb2e3b49c265a49d",
+        "client_id": "android:simpleplayer.apk",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "simpleplayer.apk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "901463423162-g4fvi9ttm5ivloctsb8ejd2s789glgqg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "simpleplayer.apk",
+            "certificate_hash": "56A2871970A08B5F9A6D0F2E1706B950754AB3F4"
+          }
+        }
+      ],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 1,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 2
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

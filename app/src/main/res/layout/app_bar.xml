@@ -10,28 +10,28 @@
     app:theme="@style/AlertDialog.AppCompat.Light"
     >
 
-
-    <SearchView
-        android:id="@+id/mySearchView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="20dp"
-        android:iconifiedByDefault="true" />
-
     <!--
+        <SearchView
+            android:id="@+id/mySearchView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:iconifiedByDefault="true" />
 
-    <item android:id="@+id/search"
-          android:title="Search Video"
+        
 
-          android:orderInCategory="@android:integer/config_shortAnimTime"
+        <item android:id="@+id/search"
+              android:title="Search Video"
 
-          app:showAsAction=""
+              android:orderInCategory="@android:integer/config_shortAnimTime"
 
-          app:actionViewClass="android.support.v7.widget.SearchView" />
+              app:showAsAction=""
 
-    <
+              app:actionViewClass="android.support.v7.widget.SearchView" />
 
--->
+        <
+
+    -->
 
 
 
